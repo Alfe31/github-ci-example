@@ -3,7 +3,7 @@ name: Java CI with Maven in Linux
 
 on:
    push:
-   pull-request:
+   pull_request:
    
 jobs:
    build:
