@@ -5,7 +5,7 @@ on:
   
 jobs:
   build:
-    runs-on: ${{matrix.os}}
+    runs-on: ${{ matrix.os }}
     strategy:
       matrix:
         # test against several OSes
