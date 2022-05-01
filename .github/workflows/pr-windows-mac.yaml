@@ -10,7 +10,7 @@ jobs:
       matrix:
         # test against several OSes
         os: [macos-latest, windows-latest]
-        
+
 name: Build with Java 8 on ${{matrix.os}}
 steps:
 - uses: actions/checkout@v2
