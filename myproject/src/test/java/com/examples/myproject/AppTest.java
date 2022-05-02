@@ -25,6 +25,11 @@ public class AppTest
     }
     
     @Test
+    public void testSayHelloWithNonNullArg() {
+    	assertEquals("Hello John",app.sayHello("John"));
+    }
+    
+    @Test
     public void testMain() {
     	App.main(null);
     }
