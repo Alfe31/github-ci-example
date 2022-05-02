@@ -10,8 +10,10 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        # test against several Java versions
-        java: [8,11]
+        include:
+          - java: 8
+            additional-maven-args: "-Pjacoco -DrepoToken=$COVERALLS_REPO_TOKEN coveralls:report"
+          - java: 11
 
     name: Build with Java ${{matrix.java}} on Linux
     steps:
@@ -28,8 +30,9 @@ jobs:
           restore-keys: ${{ runner.os}}-m2-
       - name: Build with Maven
         run: >
-          mvn -f myproject/pom.xml clean verify -Pjacoco
-          surefire-report:report-only site:site -DgenerateReports=false
+          mvn -f myproject/pom.xml clean verify ${{ matrix.additional-maven-args }}
+        env:
+          COVERALLS_REPO_TOKEN: ${{ secrets.COVERALLS_TOKEN }}
       - name: Archive JUnit Report
         uses: actions/upload-artifact@v2
         with:
