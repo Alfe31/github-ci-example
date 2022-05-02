@@ -26,6 +26,21 @@
       <scope>test</scope>
     </dependency>
   </dependencies>
+  
+  <profiles>
+  	<profile>
+  		<id>jacoco</id>
+  		<build>
+  			<plugins>
+  				<plugin>
+  					<!-- configured in pluginManagement -->
+  					<groupId>org.jacoco</groupId>
+  					<artifactId>jacoco-maven-plugin</artifactId>
+  				</plugin>
+  			</plugins>
+  		</build>
+  	</profile>
+  </profiles>
 
   <build>
     <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
@@ -76,6 +91,21 @@
         <plugin>
         	<artifactId>maven-site-plugin</artifactId>
         	<version>3.9.1</version>
+        </plugin>
+        <plugin>
+        	<groupId>org.jacoco</groupId>
+        	<artifactId>jacoco-maven-plugin</artifactId>
+        	<version>0.8.6</version>
+        	<executions>
+        		<execution>
+        			<goals>
+        				<!-- binds by default to the phase "initialize" -->
+        				<goal>prepare-agent</goal>
+        				<!-- binds by default to the phase "verify" -->
+        				<goal>report</goal>
+        			</goals>
+        		</execution>
+        	</executions>
         </plugin>
       </plugins>
     </pluginManagement>
